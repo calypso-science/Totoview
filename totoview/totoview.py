@@ -29,21 +29,6 @@ from matplotlib.dates import num2date
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-
-
-from PyQt5.Qt import *
-
-from PyQt5.uic import loadUiType
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QMainWindow, QAction, QMenu,QMenuBar, QApplication,QProxyStyle,QStyle,QStyleFactory
-from .dialog.message import *
-from .dialog.plotting import Plotting
-from .dialog.filemanip import EditFile,EditMetadata
-
-from .dialog.filtering import FiltWindow
-from .dialog.interpolating import InterpWindow
-from .dialog.selecting import SelectWindow
-
 # toto
 TOTO_PATH = os.getenv('TotoPath') #"C:\\Users\\remy\\Software\\Toto\\"
 sys.path.append(TOTO_PATH)
@@ -59,6 +44,18 @@ except:
     print('')
     sys.exit(-1)
 
+from PyQt5.Qt import *
+
+from PyQt5.uic import loadUiType
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QMainWindow, QAction, QMenu,QMenuBar, QApplication,QProxyStyle,QStyle,QStyleFactory
+from .dialog.message import *
+from .dialog.plotting import Plotting
+from .dialog.filemanip import EditFile,EditMetadata
+
+from .dialog.filtering import FiltWindow
+from .dialog.interpolating import InterpWindow
+from .dialog.selecting import SelectWindow
 
 
 import toto.inputs
