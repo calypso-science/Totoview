@@ -10,7 +10,7 @@ The source code is currently hosted on GitHub at: https://github.com/calypso-sci
 
 Install from sources
 ~~~~~~~~~~~~~~~~~~~~
- .. Toto toolbox needs to be installed :
+Toto toolbox needs to be installed :
  see https://github.com/calypso-science/Toto for instructions
 
 Install requirements. Navigate to the base root of totoview and execute:
@@ -48,7 +48,7 @@ or unzip and run the executable file from the branch "windows_compiled":
 
 How to load file:
 ---------
-From th GUI:
+From the GUI:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: bash
