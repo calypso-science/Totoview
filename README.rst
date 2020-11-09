@@ -17,7 +17,6 @@ Install requirements. Navigate to the base root of totoview and execute:
 
 .. code:: bash
 
-   # Default install
    pip install -r requirements.txt
 
 
