@@ -42,8 +42,8 @@ You can run as:
    
    python totoView.py
 
-or unzip and run the executable file from the branch "windows_compiled":
-	https://github.com/calypso-science/Totoview
+or unzip and run the executable file from this folder:
+	https://github.com/calypso-science/Totoview/compiled64.zip
 
 
 How to load file:
