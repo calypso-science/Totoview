@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: totoview
+Version: 0.0.1
+Summary: A GUI toolbox for processing timeseries'
+Home-page: https://github.com/calypso-science/Totoview
+Author: Remy Zyngfogel
+Author-email: R.zyngfogel@calypso.science
+License: UNKNOWN
+Description: # Totoview
+        Gui for visualizing and processing timeseries using Toto
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
