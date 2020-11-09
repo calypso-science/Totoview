@@ -38,6 +38,7 @@ Then run:
 Windows installation:
 ~~~~~~~~~~~~~~~~~~~~
 You can run as:
+
 .. code:: bash
    
    python totoView.py
