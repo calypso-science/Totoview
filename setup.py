@@ -4,7 +4,7 @@ import os, sys, glob
 import urllib.request
 import platform
 
-with open("README.md", "r") as fh:
+with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 pck=setuptools.find_packages(exclude=("toto","toto.*"))
