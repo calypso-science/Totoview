@@ -438,7 +438,7 @@ class TotoGUI(QMainWindow,FORM_CLASS):
                 else:
                     fname = str(url.toLocalFile())
 
-            
+            self.lastpath = QFileInfo(fname).path()
             self.load_files(fname)
         else:
             e.ignore()
