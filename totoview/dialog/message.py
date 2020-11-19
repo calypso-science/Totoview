@@ -71,10 +71,10 @@ def get_file(parent,ext,lastpath=""):
     else:
         return filenames
 
-def put_file(parent,ext,exs):
+def put_file(parent,ext,exs,lastpath=""):
     options = QFileDialog.Options()
     options |= QFileDialog.DontUseNativeDialog
-    filenames, _ = QFileDialog.getSaveFileName(parent,"Save file", "",ext, options=options)
+    filenames, _ = QFileDialog.getSaveFileName(parent,"Save file",lastpath,ext, options=options)
     if filenames=='':
         return None
     if not filenames:
@@ -99,7 +99,7 @@ def show_help_shortcuts():
     box.exec_()
 
 class wrapper_plugins(QDialog):
-    def __init__(self,tfs,fct, parent=None):
+    def __init__(self,tfs,fct,lastpath, parent=None):
         super(wrapper_plugins, self).__init__(parent)
         self.fct=fct
         self.tfs=tfs
@@ -136,7 +136,7 @@ class wrapper_plugins(QDialog):
         scroll_top.setWidget(qw)
 
         ## Bottom frame with function options
-        bottom,opt=get_layout_from_sig(sig)
+        bottom,opt=get_layout_from_sig(sig,lastpath)
         qw=QWidget()
         qw.setLayout(bottom)
         scroll_bot = QScrollArea()

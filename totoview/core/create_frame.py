@@ -31,7 +31,7 @@ def strx(s,validator):
 
     return val
 
-def get_layout_from_sig(sig):
+def get_layout_from_sig(sig,lastpath=""):
 
     Vl = QFormLayout()
     layout={}
@@ -77,6 +77,7 @@ def get_layout_from_sig(sig):
             if isinstance(args[arg],str) and os.path.isdir(args[arg]):
                 container=QWidget()
                 ly=QHBoxLayout()
+                wd.setText(lastpath)
                 ly.addWidget(wd)
                 bttn=QPushButton('...')
                 bttn.clicked.connect(pick_dir(wd))

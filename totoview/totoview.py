@@ -254,7 +254,7 @@ class TotoGUI(QMainWindow,FORM_CLASS):
 
             fct=self._import_from('toto.plugins.%s'% module[0],module[1])
             if len(data_to_process)>0:
-                sc=wrapper_plugins(data_to_process,fct)
+                sc=wrapper_plugins(data_to_process,fct,self.lastpath)
                 dfout=sc.exec()
                 if dfout:
                     for i,df in enumerate(dfout):
