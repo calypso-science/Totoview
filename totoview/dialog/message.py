@@ -56,11 +56,11 @@ def yes_no_question(txt):
     else:
         return False
 
-def get_file(parent,ext):
+def get_file(parent,ext,lastpath=""):
     options = QFileDialog.Options()
     options |= QFileDialog.DontUseNativeDialog
 
-    filenames, _ = QFileDialog.getOpenFileNames(parent,"Import file", "",ext, options=options)
+    filenames, _ = QFileDialog.getOpenFileNames(parent,"Import file", lastpath,ext, options=options)
     if filenames=='':
         return None
 

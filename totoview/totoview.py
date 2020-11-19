@@ -48,6 +48,7 @@ from PyQt5.Qt import *
 
 from PyQt5.uic import loadUiType
 from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import QFileInfo
 from PyQt5.QtWidgets import QMainWindow, QAction, QMenu,QMenuBar, QApplication,QProxyStyle,QStyle,QStyleFactory
 from .dialog.message import *
 from .dialog.plotting import Plotting
@@ -138,6 +139,8 @@ class TotoGUI(QMainWindow,FORM_CLASS):
 
         self.setAcceptDrops(True)
         self.setFocusPolicy(Qt.StrongFocus)
+
+        self.lastpath=""
 
     def _get_file_list(self):
         return [metadata['filename'] for metadata in self.metadata]
@@ -391,8 +394,10 @@ class TotoGUI(QMainWindow,FORM_CLASS):
     def callImport(self,name):
         def imp():
             ext=self.get_ext(name)
-            filenames=get_file(self,ext)
+            filenames=get_file(self,ext,self.lastpath)
+            
             if filenames:
+                self.lastpath = QFileInfo(filenames[0]).path()
                 # check if there is a GUI function
                 df=self.import_data(name,filenames)
                 filenames=self.load_df(df,filename=filenames)
