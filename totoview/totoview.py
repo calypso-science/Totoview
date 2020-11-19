@@ -410,7 +410,7 @@ class TotoGUI(QMainWindow,FORM_CLASS):
     def callOutput(self,name):
         def out():
             ext,exs=self.get_all_out(name)
-            filename=put_file(self,ext,exs)
+            filename=put_file(self,ext,exs,self.lastpath)
             if filename:
                 # check if there is a GUI function
                 self.output_data(name,filename)
