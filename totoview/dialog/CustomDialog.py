@@ -34,6 +34,7 @@ class PeaksDialog(QDialog):
         self.ok_button = self.buttons.addButton( self.buttons.Ok )
         self.buttons.addButton( self.buttons.Cancel )
         self.buttons.accepted.connect( self.accept )
+        self.buttons.rejected.connect(self.closeWindow)
         Vl.addWidget(self.buttons)
        
         self.setLayout(Vl)
@@ -42,7 +43,9 @@ class PeaksDialog(QDialog):
 
         self.setGeometry(300, 300, 250, 150)
         self.show()    
-
+    def closeWindow(self):
+        self.close()
+        return None
     def getResults(self):
         if self.exec_() == QDialog.Accepted:
             # get all values
@@ -83,6 +86,7 @@ class CalendarDialog(QDialog):
         self.ok_button = self.buttons.addButton( self.buttons.Ok )
         self.buttons.addButton( self.buttons.Cancel )
         self.buttons.accepted.connect( self.accept )
+        self.buttons.rejected.connect(self.closeWindow)
         Vl.addWidget(self.buttons)
 
         
@@ -101,3 +105,6 @@ class CalendarDialog(QDialog):
             return tstart, tend
         else:
             return None
+    def closeWindow(self):
+        self.close()
+        return None

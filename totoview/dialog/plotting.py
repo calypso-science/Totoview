@@ -80,8 +80,9 @@ class SelectFromCollection(object):
         elif method == 'peaks':
             w = PeaksDialog()
             values = w.getResults()
-            self.selector(peaks=values)
-            self.canvas.draw_idle()
+            if values:
+                self.selector(peaks=values)
+                self.canvas.draw_idle()
 
         elif method == 'spanselector':
 
