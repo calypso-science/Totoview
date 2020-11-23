@@ -1,6 +1,6 @@
 import sys,os
 from .create_frame import get_layout_from_sig,extract_option_from_frame
-
+from ..dialog.plotting import check_timeseries
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog,QWidget,QFormLayout,QHBoxLayout,QStackedWidget,\
                             QVBoxLayout,QSpacerItem,QLabel,QPushButton,QApplication,QListWidget,QListWidgetItem,\
@@ -171,8 +171,15 @@ class BaseWindow(QDialog):
             self.figure.clf()
             ax = self.figure.add_subplot(111)
 
+            y=self.X[0][self.X[0].keys()[0]].values
+
+            if not check_timeseries(y):
+                typ='-'
+            else:
+                typ='+'
+
             ax.plot(self.X0[self.X[0].keys()[0]],label='original')
-            ax.plot(self.X[0][self.X[0].keys()[0]],label='interpolated')
+            ax.plot(self.X[0][self.X[0].keys()[0]],typ,label='interpolated')
             plt.grid()
             self.figure.autofmt_xdate()
             ax.legend()
