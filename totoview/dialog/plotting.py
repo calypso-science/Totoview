@@ -35,7 +35,21 @@ import matplotlib.dates as mpld
 import six
 
 #mpld.set_epoch('0000-12-31T00:00:00')
-                    
+def check_timeseries(y):
+    
+    nonans=np.nonzero(~np.isnan(y))[0]
+    before=nonans-1
+    before[before<0]=0
+    after=nonans+1
+    after[after>len(y)-1]=len(y)-1
+    y_befores=y[before]
+    y_afters=y[after]
+
+    inter=len(np.nonzero(np.logical_and(np.isnan(y_befores),np.isnan(y_afters)))[0])
+    tot=len(nonans)
+
+    return inter/tot>=0.5
+
 class SelectFromCollection(object):
     """Select indices from a matplotlib collection using `LassoSelector`.
 
@@ -376,7 +390,11 @@ class Plotting(object):
                     else:
                         ax1f1.set_gid('ax')
                         plot_ft=getattr(ax1f1, plot_name)
-                        plot_ft(x,y,label=var,gid=file+';'+var,linewidth=0.8)
+                        if not check_timeseries(y.values):
+                            typ='-'
+                        else:
+                            typ='+'
+                        plot_ft(x,y,typ,label=var,gid=file+';'+var,linewidth=0.8)
                         #ax1f1.set_xlim(x[0],x[-1])
                         
                         self.add_metadata(ax1f1,data[file]['metadata'][index_name],data[file]['metadata'][var])
