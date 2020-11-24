@@ -288,8 +288,6 @@ class wrapper_plugins(QDialog):
                     del df[index_name]
                     
                     self.dfs[i] = pd.merge_asof(df, dfout, on=index_name).set_index(index_name,drop=False)
-                    print(self.dfs[i])
-                    print(mets)
                     self.dfs[i]=add_metadata_to_df(self.dfs[i],mets)
 
             elif isinstance(dfout,str):
