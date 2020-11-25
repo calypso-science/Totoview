@@ -50,7 +50,7 @@ except:
 from PyQt5.Qt import *
 
 from PyQt5.uic import loadUiType
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon,QFont
 from PyQt5.QtCore import QFileInfo
 from PyQt5.QtWidgets import QMainWindow, QAction, QMenu,QMenuBar, QApplication,QProxyStyle,QStyle,QStyleFactory
 from .dialog.message import *
@@ -159,7 +159,12 @@ class TotoGUI(QMainWindow,FORM_CLASS):
             plugMenu=QMenu(plugin, self)
 
             for act in [x for x in dir(acts) if not x.startswith('_')]:
-                im = QAction(act.replace('_',' ').capitalize(), self)
+                name=act.replace('_',' ').capitalize()
+                im = QAction(name, self)
+
+                if hasattr(acts,'__'+act+'__'):
+                    im.setEnabled(getattr(acts,'__'+act+'__'))             
+                    
                 im.triggered.connect(self.CallWrapper([plugin,act]))
                 plugMenu.addAction(im)
 
