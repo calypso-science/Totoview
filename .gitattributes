@@ -1,1 +1,2 @@
 compiled64.zip filter=lfs diff=lfs merge=lfs -text
+totoview_setup.exe filter=lfs diff=lfs merge=lfs -text

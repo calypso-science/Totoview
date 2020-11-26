@@ -157,18 +157,15 @@ data_files = [
     ("utide\\data", glob(os.path.join(PYTHON_SITEPACKAGES,"utide","data",'*.*'))),
     ]
 
-print(data_files)
-
 setup(
     name="totoView",
     version=version,
     description=u"totoView - Calypso Science/MetOcean Solutions",
     author="Calypso Science",
-    console=['totoView.py'],
-    #zipfile=None,
-    # windows=[{'script':'totoView.py',
-    #          'icon_resources': [(1, "totoview\\_tools\\toto.ico")],
-    #          }],
+    #console=['totoView.py'],
+    windows=[{'script':'totoView.py',
+             'icon_resources': [(0, "totoview\\_tools\\toto.ico")],
+             }],
     options=options,
     data_files=data_files,
 )

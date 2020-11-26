@@ -7,7 +7,7 @@ import toto
 import inspect
 from ..core.create_frame import get_layout_from_sig,extract_option_from_frame
 import pandas as pd
-from toto.core.totoframe import add_metadata_to_df
+from toto.core import totoframe 
 import numpy as np
 from ..dialog.checkableComboBox import CheckableComboBox
 
@@ -247,7 +247,7 @@ class wrapper_plugins(QDialog):
 
             # ## add all metadata here so it is passed inside the function
             # ## Must be used before they disappear
-            df=add_metadata_to_df(df,mets)
+            df=totoframe.add_metadata_to_df(df,mets)
             df.longitude=self.tfs[i]['longitude']
             df.latitude=self.tfs[i]['latitude']
             df.filename=self.tfs[i]['filename']
@@ -288,7 +288,7 @@ class wrapper_plugins(QDialog):
                     del df[index_name]
                     
                     self.dfs[i] = pd.merge_asof(df, dfout, on=index_name).set_index(index_name,drop=False)
-                    self.dfs[i]=add_metadata_to_df(self.dfs[i],mets)
+                    self.dfs[i]=totoframe.add_metadata_to_df(self.dfs[i],mets)
 
             elif isinstance(dfout,str):
                 display_error("Cannot run {} function:\n{}".format(self.fct.__name__, dfout))
