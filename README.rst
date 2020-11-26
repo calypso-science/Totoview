@@ -8,6 +8,20 @@ Where to get it
 ~~~~~~~~~~~~~~~
 The source code is currently hosted on GitHub at: https://github.com/calypso-science/Totoview
 
+Module requirements:
+------------------
+Toto module needs to be installed:
+The source code is currently hosted on GitHub at: https://github.com/calypso-science/Toto
+
+For windows user, if using the compiled version (.exe file)A environmental variable must be setup
+To set it up temporarily:
+
+.. code:: bash
+
+	set TotoPath=C:\user\software\toto
+
+or add TotoPath as environmental variable
+
 Install from sources
 ~~~~~~~~~~~~~~~~~~~~
 Toto toolbox needs to be installed :
@@ -27,12 +41,6 @@ Then install totoview:
    python setup.py install
 
 
-Then run:
-
-.. code:: bash
-   
-   totoView
-
 
 Windows installation:
 ~~~~~~~~~~~~~~~~~~~~
@@ -44,7 +52,8 @@ You can run as:
 
 or unzip and run the executable file from this folder:
 	https://github.com/calypso-science/Totoview/compiled64.zip
-
+or run the installer:
+	https://github.com/calypso-science/Totoview/totoview_setup.exe
 
 How to load file:
 ---------
