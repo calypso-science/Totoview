@@ -112,7 +112,7 @@ py2exe.runtime.Runtime.copy_files = better_copy_files
 GDAL_DIR = "C:\\Program Files\\GDAL"
 MSVC_DIR = "C:\\Program Files (x86)\\Microsoft Visual Studio 9.0\\VC\\redist\\x86\\Microsoft.VC90.CRT"
 MSVC_DIR = "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\VC\\Redist\\MSVC\\14.27.29016\\x86\\Microsoft.VC142.CRT"
-DEST_DIR = "compiled64"
+DEST_DIR = "compiled64_withtoto"
 
 
 sys.path.extend([MSVC_DIR, GDAL_DIR])
@@ -131,11 +131,11 @@ options = {
                       'PyQt5', 'windrose','attrdict','ctypes', 'openpyxl',
                       'yaml', "numba","numdifftools","utide","wafo","netCDF4",
                       "encodings","mplcyberpunk","grid_strategy","mpl_toolkits.mplot3d",
-                      "totoview","totoview.core","totoview.dialog","totoview.inputs"],
-                      # "toto","toto.inputs",
-                      # "toto.plugins.extreme","toto.plugins.plots","toto.plugins.statistics",
-                      # "toto.plugins.tide","toto.plugins.tide","toto.plugins.transformations",
-                      # "toto.plugins.wave","toto.plugins.woodside"],
+                      "totoview","totoview.core","totoview.dialog","totoview.inputs",
+                      "toto","toto.inputs",
+                      "toto.plugins.extreme","toto.plugins.plots","toto.plugins.statistics",
+                      "toto.plugins.tide","toto.plugins.tide","toto.plugins.transformations",
+                      "toto.plugins.wave","toto.plugins.woodside"],
     }
 }
 

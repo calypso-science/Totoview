@@ -23,7 +23,7 @@ DisableProgramGroupPage=yes
 LicenseFile=C:\Users\remy\Software\Totoview\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputBaseFilename=totoview_setup
+OutputBaseFilename=totoview_setup_withtoto
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -35,8 +35,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\remy\Software\Totoview\compiled64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\remy\Software\Totoview\compiled64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\remy\Software\Totoview\compiled64_withtoto\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\remy\Software\Totoview\compiled64_withtoto\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

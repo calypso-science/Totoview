@@ -7,11 +7,13 @@
 *.so
 *.pyc
 *.pyo
-
+/gui_py2exe_nototo.py
+/gui_py2exe_toto.py
 # Directory #
 dist/
 build/
-compiled64/
+compiled64_withtoto/
+compiled64_nototo/
 output/
 toto.egg-info/
 # Packages #
