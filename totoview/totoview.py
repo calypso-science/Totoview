@@ -144,6 +144,7 @@ class TotoGUI(QMainWindow,FORM_CLASS):
 
         self.setAcceptDrops(True)
         self.setFocusPolicy(Qt.StrongFocus)
+        self.data_to_copy=None
 
         self.lastpath=""
 
@@ -452,6 +453,10 @@ class TotoGUI(QMainWindow,FORM_CLASS):
 
     def keyPressEvent(self, event):
 
+        if event.modifiers() and event.key() == 67 : # CTRL+C
+            self.copy_series()
+        if event.modifiers() and event.key() == 86 : # CTRL+V
+            self.paste_series()       
         if event.key() == Qt.Key_Escape:
             self.close()
         if event.key() == 16777223: # delete key
@@ -648,6 +653,32 @@ class TotoGUI(QMainWindow,FORM_CLASS):
         
         self.plotting.refresh_plot(self.data,checks_files,check_vars)
         self.list_file.blocker.unblock()
+
+    def paste_series(self):
+        item=self.list_file.currentItem()
+        if item and self.data_to_copy!=None:
+            if item.parent():
+                parent=item.parent().text(0)
+            else:
+                parent=item.text(0)
+            rep=yes_no_question('do you really want to copy to: %s' % parent)
+            if rep:
+                self.data.copy_data(self.data_to_copy[0],self.data_to_copy[1],parent)
+                self.list_file.populate_tree(self.data)
+                self.get_file_var()
+                self.data_to_copy=None
+
+
+    def copy_series(self):
+        item=self.list_file.currentItem()
+        if item:
+            if item.parent():
+                self.data_to_copy=(item.parent().text(0),item.text(0))
+                display_message('Var: %s is copied' % item.text(0))
+            else:
+                self.data_to_copy=(item.text(0),None)
+                display_message('file: %s is copied' % item.text(0))
+
 
     def add_selection(self):
         axes=self.plotting.sc.fig1.get_axes()

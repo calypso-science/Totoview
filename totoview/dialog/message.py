@@ -35,7 +35,13 @@ def display_error(txt):
     msg.setWindowTitle("Error")
     msg.show()
     msg.exec_()
-
+def display_message(txt):
+    msg = QMessageBox()
+    msg.setIcon(QMessageBox.Information)
+    msg.setText(txt)
+    msg.setWindowTitle("Info")
+    msg.show()
+    msg.exec_()
 def yes_no_question(txt):
     # Create a confirmation dialog asking for permission to quit the application:
     box = QMessageBox()
@@ -92,7 +98,9 @@ def show_help_shortcuts():
         ' d     => delete seclection\n'+\
         ' enter => save seclection in new file\n'+\
         ' F1    => display help\n'+\
-        ' F2    => display this message\n'
+        ' F2    => display this message\n'+\
+        ' ctrl+c=> copy a file or timeseries\n'+\
+        ' ctrl+v=> paste a file or timeseries\n'
 
     box.setText(txt)
     box.show()
