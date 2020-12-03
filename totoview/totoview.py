@@ -695,8 +695,11 @@ class TotoGUI(QMainWindow,FORM_CLASS):
             file=label[0]
             var=label[1]
             self.data.delete_data(file,var,xlim=[min(x),max(x)],ylim=[min(y),max(y)])
-            df=pd.DataFrame({self.data[file]['dataframe'].index.name:num2date(x),var:y})
-            df[self.data[file]['dataframe'].index.name] = pd.to_datetime(df[self.data[file]['dataframe'].index.name]).dt.tz_localize(None)
+            if self.data[file]['dataframe'].index.name=='time':
+                df=pd.DataFrame({self.data[file]['dataframe'].index.name:num2date(x),var:y})
+                df[self.data[file]['dataframe'].index.name] = pd.to_datetime(df[self.data[file]['dataframe'].index.name]).dt.tz_localize(None)
+            else:
+                df=pd.DataFrame({self.data[file]['dataframe'].index.name:x,var:y})
             df.set_index(self.data[file]['dataframe'].index.name,inplace=True,drop=False)
             self.data.add_dataframe([df],['selection_'+file])
             self.list_file.populate_tree(self.data)
