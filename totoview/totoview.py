@@ -635,9 +635,12 @@ class TotoGUI(QMainWindow,FORM_CLASS):
             display_error('You need to select at least on file')
 
     def import_data(self,reader,filenames):
+
+
         try:
             run_ft=self._import_from('totoview.inputs.%sGUI' % reader,'%sfile' %reader.upper())
             df=run_ft(self,filenames) 
+
 
         except:
             run_ft=self._import_from('toto.inputs.%s' % reader,'%sfile' %reader.upper()) 
