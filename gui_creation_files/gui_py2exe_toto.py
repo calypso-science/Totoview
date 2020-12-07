@@ -22,7 +22,10 @@ import appdirs
 import pathlib
 import tcl
 import tkinter
+
+
 PYTHON_SITEPACKAGES = get_python_lib()
+
 #PYTHON_SITEPACKAGES = "C:\\Users\\papum\\Envs\\Toto3.7\\Lib\\site-packages"
 
 matplotlibdatadir = matplotlib.get_data_path()
@@ -34,16 +37,16 @@ for f in matplotlibdata:
 
 
 
-# totoviewdata_files=[]
+totoviewdata_files=[]
 # for f in glob('totoview\\_tools\\*.*'):
 #     dirname = os.path.join('totoview','_tools')
 #     totoviewdata_files.append((dirname, [f]))
 
-# for f in glob('toto\\plugins\\*.*'):
+# for f in glob(os.path.join('C:\\Users\\remy\\Software\\','Toto','toto','plugins','*.*')):
 #     dirname = os.path.join('toto','plugins')
 #     totoviewdata_files.append((dirname, [f]))
 
-# for f in glob('toto\\core\\*.yml'):
+# for f in glob(os.path.join('C:\\Users\\remy\\Software\\','Toto','toto','core','*.yml')):
 #     dirname = os.path.join('toto','core')
 #     totoviewdata_files.append((dirname, [f]))
 
@@ -76,28 +79,28 @@ def better_copy_files(self, destdir):
                 print("Copy File %s to %s" % (item[0], dest))
             arc.write(item[0], os.path.join(dest,os.path.basename(item[0])))
             #arc.write(item[0], os.path.join('pandas','plotting','_matplotlib',dest,os.path.basename(item[0])))
-        
-        # for dest,item in totoviewdata_files:
-        #     if self.options.verbose:
-        #         print("Copy File %s to %s" % (item[0], dest))
-        #     arc.write(item[0], os.path.join(dest,os.path.basename(item[0])))
+
+        for dest,item in totoviewdata_files:
+            if self.options.verbose:
+                print("Copy File %s to %s" % (item[0], dest))
+            arc.write(item[0], os.path.join(dest,os.path.basename(item[0])))
             
 
         arc.close()
 
-        ## Here we add add and remove toto so all library gets included
-        zin = zipfile.ZipFile (libpath, 'r')
-        libpath_tmp=os.path.join(destdir,'libtmp.zip')
-        zout = zipfile.ZipFile (libpath_tmp, 'w')
-        for item in zin.infolist():
-            buffer = zin.read(item.filename)
-            if not ('toto/' in item.filename):
-                zout.writestr(item, buffer)
-        zout.close()
-        zin.close()
+        # ## Here we add add and remove toto so all library gets included
+        # zin = zipfile.ZipFile (libpath, 'r')
+        # libpath_tmp=os.path.join(destdir,'libtmp.zip')
+        # zout = zipfile.ZipFile (libpath_tmp, 'w')
+        # for item in zin.infolist():
+        #     buffer = zin.read(item.filename)
+        #     if not ('toto/' in item.filename):
+        #         zout.writestr(item, buffer)
+        # zout.close()
+        # zin.close()
 
-        os.remove(libpath)
-        os.rename(libpath_tmp,libpath)
+        # os.remove(libpath)
+        # os.rename(libpath_tmp,libpath)
 
 
         ## here we need to copy the files that used package_resourec
@@ -124,15 +127,15 @@ options = {
         "skip_archive": True,
         "ascii": False,
         "xref": False,
-        "includes": ["dask","six",'matplotlib',"mpl_toolkits.axisartist","mpl_toolkits.axes_grid","mpl_toolkits.axes_grid1",'pandas','PyQt5','mplcyberpunk','PyQt5.QtCore','PyQt5.QtWidgets','appdirs'],
+        "includes": ["toto","dask","six",'matplotlib',"mpl_toolkits.axisartist","mpl_toolkits.axes_grid","mpl_toolkits.axes_grid1",'pandas','PyQt5','mplcyberpunk','PyQt5.QtCore','PyQt5.QtWidgets','appdirs'],
         "dll_excludes": [],
         "excludes": ['_gtkagg', '_tkagg'],
-        "packages" : ['numpy','matplotlib', 'pandas','future','scipy','xarray',
+        "packages" : ['xlwt','numpy','matplotlib', 'pandas','future','scipy','xarray',
                       'PyQt5', 'windrose','attrdict','ctypes', 'openpyxl',
                       'yaml', "numba","numdifftools","utide","wafo","netCDF4",
                       "encodings","mplcyberpunk","grid_strategy","mpl_toolkits.mplot3d",
                       "totoview","totoview.core","totoview.dialog","totoview.inputs",
-                      "toto","toto.inputs",
+                      "toto","toto.inputs","toto.plugins",
                       "toto.plugins.extreme","toto.plugins.plots","toto.plugins.statistics",
                       "toto.plugins.tide","toto.plugins.tide","toto.plugins.transformations",
                       "toto.plugins.wave","toto.plugins.woodside"],
@@ -143,7 +146,20 @@ options = {
 data_files = [
     ('', glob(r'C:\\Windows\\SysWOW64\\msvcp100.dll')),
     ('', glob(r'C:\\Windows\\SysWOW64\\msvcr100.dll')),
-    #('toto\\core', glob('toto\\core\\*.yml*')),
+    ('toto\\core', glob('C:\\Users\\remy\\Software\\Toto\\toto\\core\\*.yml*')),
+    ('toto\\plugins\\extreme', glob('C:\\Users\\remy\\Software\\Toto\\toto\\plugins\\extreme\\*.py')),
+    ('toto\\plugins\\plots', glob('C:\\Users\\remy\\Software\\Toto\\toto\\plugins\\plots\\*.py')),
+    ('toto\\plugins\\statistics', glob('C:\\Users\\remy\\Software\\Toto\\toto\\plugins\\statistics\\*.py')),
+    ('toto\\plugins\\tide', glob('C:\\Users\\remy\\Software\\Toto\\toto\\plugins\\tide\\*.py')),
+    ('toto\\plugins\\transformations', glob('C:\\Users\\remy\\Software\\Toto\\toto\\plugins\\transformations\\*.py')),
+    ('toto\\plugins\\wave', glob('C:\\Users\\remy\\Software\\Toto\\toto\\plugins\\wave\\*.py')),  
+    ('toto\\plugins\\woodside', glob('C:\\Users\\remy\\Software\\Toto\\toto\\plugins\\woodside\\*.py')),
+    ('toto\\inputs', glob('C:\\Users\\remy\\Software\\Toto\\toto\\inputs\\*.py')),
+    ('toto\\outputs', glob('C:\\Users\\remy\\Software\\Toto\\toto\\outputs\\*.py')),        
+    ('toto\\interpolations', glob('C:\\Users\\remy\\Software\\Toto\\toto\\interpolations\\*.py')), 
+    ('toto\\filters', glob('C:\\Users\\remy\\Software\\Toto\\toto\\filters\\*.py')), 
+    ('toto\\selections', glob('C:\\Users\\remy\\Software\\Toto\\toto\\selections\\*.py')), 
+    ('toto\\cyclone', glob(os.path.join(PYTHON_SITEPACKAGES,'IBTrACS*.nc'))), 
     ('totoview\\_tools', glob('totoview\\_tools\\*.*')),
     ("Microsoft.VC90.CRT", glob(os.path.join(MSVC_DIR, '*.*'))),
     (r"platforms", glob(os.path.join(PYTHON_SITEPACKAGES, "PyQt5", "Qt", "plugins", "platforms","*.dll"))),
@@ -164,7 +180,7 @@ setup(
     author="Calypso Science",
     #console=['totoView.py'],
     windows=[{'script':'totoView.py',
-             'icon_resources': [(0, "totoview\\_tools\\toto.ico")],
+             'icon_resources': [(0, "totoview\\_tools\\toto16.ico")],
              }],
     options=options,
     data_files=data_files,

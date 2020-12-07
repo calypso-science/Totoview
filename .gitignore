@@ -14,7 +14,7 @@ dist/
 build/
 compiled64_withtoto/
 compiled64_nototo/
-
+totoview.egg-info/
 toto.egg-info/
 # Packages #
 ############
