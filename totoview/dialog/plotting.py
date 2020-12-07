@@ -47,8 +47,10 @@ def check_timeseries(y):
 
     inter=len(np.nonzero(np.logical_and(np.isnan(y_befores),np.isnan(y_afters)))[0])
     tot=len(nonans)
-
-    return inter/tot>=0.5
+    if tot==0:
+        return False
+    else:
+        return inter/tot>=0.5
 
 class SelectFromCollection(object):
     """Select indices from a matplotlib collection using `LassoSelector`.

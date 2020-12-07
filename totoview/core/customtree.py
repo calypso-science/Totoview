@@ -144,11 +144,17 @@ class CustomTreeWidget(QTreeWidget):
             keys=data.keys()
             self.clear()
             
-
+        if len(keys)==1:
+            single_file=True
+        else:
+            single_file=False
 
         first=True
         for file in keys:
             parent=self.addItem(file,"family")
+            if single_file:
+                parent.setCheckState(0, Qt.Checked)
+                single_file=False
             for var in data[file]['metadata'].keys():
                 if var != 'time':
                     item=self.addItem(var,"children",parent,data[file]['metadata'][var]['short_name'])

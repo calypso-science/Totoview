@@ -79,7 +79,7 @@ if op_sys == 'Darwin':
 here = os.path.dirname(os.path.abspath(__file__))
 FORM_CLASS, _ = loadUiType(os.path.join(here,'_tools','mainwindow.ui').replace('\\library.zip',''))
 
-PLOT_TYPE=['scatter','plot','bar','hist','rose','progressif']
+PLOT_TYPE=['scatter','plot','hist','rose','progressif']
 
 
 
@@ -115,7 +115,7 @@ class TotoGUI(QMainWindow,FORM_CLASS):
         
         self.databackup=copy.deepcopy(data)
         self.setupUi(self)
-        self.setWindowIcon(QIcon(os.path.join(here,'_tools','toto.ico').replace('\\library.zip','')))
+        self.setWindowIcon(QIcon(os.path.join(here,'_tools','toto16.ico').replace('\\library.zip','')))
         
         # 
         self.plotting=Plotting(self.mplvl,self.plot_name)
