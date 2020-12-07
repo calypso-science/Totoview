@@ -244,7 +244,7 @@ class parse_time_GUI(QDialog):
 
  
 
-    def display_custom():
+    def display_custom(self):
         if self.unit_choice.currentIndex()==3:
             self.customUnit.setVisible(True)
         else:
