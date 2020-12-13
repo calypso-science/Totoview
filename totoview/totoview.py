@@ -636,7 +636,6 @@ class TotoGUI(QMainWindow,FORM_CLASS):
 
     def import_data(self,reader,filenames):
 
-
         try:
             run_ft=self._import_from('totoview.inputs.%sGUI' % reader,'%sfile' %reader.upper())
             df=run_ft(self,filenames) 
