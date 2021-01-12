@@ -152,7 +152,7 @@ class SelectFromCollection(object):
                     fct=getattr(np, 'nan'+stat)
                     row.append('%.2f'%fct(Y[ind]))
                 elif isinstance(stat,list):
-                    perc=list(np.percentile(Y[ind],stat))
+                    perc=list(np.nanpercentile(Y[ind],stat))
                     row+=['%.2f'%x for x in perc]                
             
             mat.append(row)
