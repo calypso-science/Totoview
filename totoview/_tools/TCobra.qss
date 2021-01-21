@@ -40,8 +40,8 @@ QDialog
 /*-----QLabel-----*/
 QLabel
 {
-	background-color: transparent;
-	color: #fff;
+	background-color: #fff;
+	color: #000;
 	
 }
 

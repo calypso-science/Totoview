@@ -59,6 +59,30 @@
        <enum>QLayout::SetFixedSize</enum>
       </property>
       <item>
+       <layout class="QHBoxLayout" name="logo_layout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="logo_MO">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="logo_CS">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QComboBox" name="plot_name"/>
       </item>
       <item>
@@ -192,5 +216,6 @@
    <header>totoview.core.customtree</header>
   </customwidget>
  </customwidgets>
+ <resources/>
  <connections/>
 </ui>

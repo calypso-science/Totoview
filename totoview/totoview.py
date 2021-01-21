@@ -52,8 +52,8 @@ except:
 from PyQt5.Qt import *
 
 from PyQt5.uic import loadUiType
-from PyQt5.QtGui import QIcon,QFont
-from PyQt5.QtCore import QFileInfo
+from PyQt5.QtGui import QIcon,QFont,QPixmap
+from PyQt5.QtCore import QFileInfo,Qt
 from PyQt5.QtWidgets import QMainWindow, QAction, QMenu,QMenuBar, QApplication,QProxyStyle,QStyle,QStyleFactory
 from .dialog.message import *
 from .dialog.plotting import Plotting
@@ -116,7 +116,12 @@ class TotoGUI(QMainWindow,FORM_CLASS):
         self.databackup=copy.deepcopy(data)
         self.setupUi(self)
         self.setWindowIcon(QIcon(os.path.join(here,'_tools','toto16.ico').replace('\\library.zip','')))
-        
+        pixmap = QPixmap(os.path.join(ssDir,'MO.png').replace('\\library.zip',''))
+        self.logo_MO.setPixmap(pixmap)
+        pixmap = QPixmap(os.path.join(ssDir,'calypso64.png').replace('\\library.zip',''))
+        self.logo_CS.setPixmap(pixmap) 
+        self.logo_CS.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)  
+
         # 
         self.plotting=Plotting(self.mplvl,self.plot_name)
        
@@ -185,6 +190,11 @@ class TotoGUI(QMainWindow,FORM_CLASS):
         im = QAction('Help', self)
         im.triggered.connect(self.help_browser)
         fileMenu.addAction(im)
+        im = QAction('Buy', self)
+        im.triggered.connect(self.help_buy)
+        fileMenu.addAction(im)
+
+
         Bar_help.addMenu(fileMenu)
         self.menubar.setCornerWidget(Bar_help)
 
@@ -280,13 +290,17 @@ class TotoGUI(QMainWindow,FORM_CLASS):
                 self.plotting.refresh_plot(self.data,checks_files_after,check_vars_after)
                 
             else:
-                display_error('You need to select at least on file')
+                display_error('You need to select at least one file')
             self.list_file.blocker.unblock()
         return out
 
     def help_browser(self):
         mss=show_help_browser()
         mss.exec_()
+    def help_buy(self):
+        mss=show_help_buy()
+        mss.exec_()
+
     def callSelect(self):
 
         self.list_file.blocker.reblock()
