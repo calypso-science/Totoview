@@ -106,6 +106,21 @@ def show_help_shortcuts():
     box.show()
     box.exec_()
 
+
+def show_help_buy():
+
+    box = QMessageBox()
+    box.setIcon(QMessageBox.Information)
+    box.setWindowTitle('How to buy:')
+    txt='To buy extra modules please contact:\n'+\
+        ' Brett Beamsley: b.beamsley@metocean.co.nz\n'+\
+        ' Remy Zyngfogel: r.zyngfogel@calypso.science\n'
+
+    box.setText(txt)
+    box.show()
+    box.exec_()
+
+
 class wrapper_plugins(QDialog):
     def __init__(self,tfs,fct,lastpath, parent=None):
         super(wrapper_plugins, self).__init__(parent)
