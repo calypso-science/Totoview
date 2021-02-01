@@ -30,24 +30,24 @@ from matplotlib.dates import num2date
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
-try:
-    import toto
-except:
-    # try:
-        # toto
-        TOTO_PATH = os.getenv('TotoPath') #"C:\\Users\\remy\\Software\\Toto\\"
-        sys.path.append(TOTO_PATH)
-        if not TOTO_PATH:
-            raise ValueError("Error: problem loading toto package,Try setting up the toto path as environmental variable named: TotoPath")
-    # except:
-    #     print('')
-    #     print('')
-    #     print('Error: problem loading toto package:')
-    #     print('  - Check if this package is installed ( e.g. type: `python setup_toto.py install`)')
-    #     print('Or')
-    #     print('  - Try setting up the toto path as environmental variable named: TotoPath ')
-    #     print('')
-    #     sys.exit(-1)
+# try:
+import toto
+# except:
+#     # try:
+#         # toto
+#         TOTO_PATH = os.getenv('TotoPath') #"C:\\Users\\remy\\Software\\Toto\\"
+#         sys.path.append(TOTO_PATH)
+#         if not TOTO_PATH:
+#             raise ValueError("Error: problem loading toto package,Try setting up the toto path as environmental variable named: TotoPath")
+#     # except:
+#     #     print('')
+#     #     print('')
+#     #     print('Error: problem loading toto package:')
+#     #     print('  - Check if this package is installed ( e.g. type: `python setup_toto.py install`)')
+#     #     print('Or')
+#     #     print('  - Try setting up the toto path as environmental variable named: TotoPath ')
+#     #     print('')
+#     #     sys.exit(-1)
 
 from PyQt5.Qt import *
 
@@ -65,6 +65,7 @@ from .dialog.selecting import SelectWindow
 
 
 import toto.inputs
+import totoview
 import toto.outputs
 from toto.core.totoframe import TotoFrame,add_metadata_to_df
 from toto.core.metadataframe import MetadataFrame
@@ -650,16 +651,27 @@ class TotoGUI(QMainWindow,FORM_CLASS):
 
     def import_data(self,reader,filenames):
 
+
         try:
             run_ft=self._import_from('totoview.inputs.%sGUI' % reader,'%sfile' %reader.upper())
-            df=run_ft(self,filenames) 
-
-
+            gui=True
         except:
             run_ft=self._import_from('toto.inputs.%s' % reader,'%sfile' %reader.upper()) 
-            df=run_ft(filenames)
+            gui=False
 
-        return df._toDataFrame()
+        try:
+            if gui:
+                df=run_ft(self,filenames) 
+            else:
+                df=run_ft(filenames)
+
+            return df._toDataFrame()
+        except Exception:
+
+            display_error('%s' % sys.exc_info()[1])
+            return []
+
+        
 
 
 

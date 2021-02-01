@@ -20,7 +20,7 @@ def strx(s):
 class ImportGUI(QDialog):
     def __init__(self,TXTfile,parent,options):
         super(ImportGUI, self).__init__(parent)
-        xl = pd.ExcelFile(TXTfile)
+        xl = pd.ExcelFile(TXTfile,engine='openpyxl')
 
 
         self.options=options
