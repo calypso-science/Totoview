@@ -22,9 +22,7 @@ import appdirs
 import pathlib
 import tcl
 import tkinter
-
 from packaging import specifiers
-
 
 PYTHON_SITEPACKAGES = get_python_lib()
 
@@ -36,7 +34,6 @@ matplotlibdata_files = []
 for f in matplotlibdata:
     dirname = os.path.join('matplotlib','mpl-data', f[len(matplotlibdatadir)+1:])
     matplotlibdata_files.append((os.path.split(dirname)[0], [f]))
-
 
 
 totoviewdata_files=[]
@@ -59,12 +56,6 @@ for f in glob(os.path.join(PYTHON_SITEPACKAGES,"xarray","static","html","*")):
 for f in glob(os.path.join(PYTHON_SITEPACKAGES,"xarray","static","css","*")):
     dirname = os.path.join('xarray','static','css')
     totoviewdata_files.append((dirname, [f]))
-
-
-# for f in glob(os.path.join(PYTHON_SITEPACKAGES,"dask","*.yaml")):
-#     dirname = os.path.join('dask')
-#     totoviewdata_files.append((dirname, [f]))
-
 
 def better_copy_files(self, destdir):
     """Overriden so that things can be included in the library.zip."""
@@ -113,10 +104,6 @@ def better_copy_files(self, destdir):
         # os.rename(libpath_tmp,libpath)
 
 
-        ## here we need to copy the files that used package_resourec
-
-
-
 original_copy_files = py2exe.runtime.Runtime.copy_files
 py2exe.runtime.Runtime.copy_files = better_copy_files
 
@@ -140,8 +127,7 @@ options = {
         "includes": ["toto","dask","six",'matplotlib',"mpl_toolkits.axisartist","mpl_toolkits.axes_grid","mpl_toolkits.axes_grid1",'pandas','PyQt5','mplcyberpunk','PyQt5.QtCore','PyQt5.QtWidgets','appdirs'],
         "dll_excludes": [],
         "excludes": ['_gtkagg', '_tkagg'],
-
-        "packages" : ['xlwt','numpy','matplotlib', 'pandas','future','scipy','xarray',
+        "packages" : ['packaging','xlwt','numpy','matplotlib', 'pandas','future','scipy','xarray',
                       'PyQt5', 'windrose','attrdict','ctypes', 'openpyxl',
                       'yaml', "numba","numdifftools","utide","wafo","netCDF4",
                       "encodings","mplcyberpunk","grid_strategy","mpl_toolkits.mplot3d",
@@ -149,13 +135,12 @@ options = {
                       "toto","toto.inputs","toto.plugins",
                       "toto.plugins.extreme","toto.plugins.plots","toto.plugins.statistics",
                       "toto.plugins.tide","toto.plugins.tide","toto.plugins.transformations",
-                      "toto.plugins.wave","toto.plugins.woodside"],
+                      "toto.plugins.wave","toto.plugins.woodside","xlrd"],
     }
 }
 
 
 data_files = [
-
     ('', glob(r'C:\\Windows\\System32\\msvcp100.dll')),
     ('', glob(r'C:\\Windows\\System32\\msvcr100.dll')),
     ('', glob(os.path.join(PYTHON_SITEPACKAGES,"scipy",".libs","*"))),
@@ -163,7 +148,6 @@ data_files = [
     # ('', glob(r'C:\\Windows\\System32\\ntdll.dll')),
     # ('', glob(r'C:\\Windows\\System32\\MSVCRT.dll')),
     # ('', glob(r'C:\\Windows\\SysWOW64\\msvcr100_clr0400.dll')),
-
     ('toto\\core', glob('Z:\\software\\TOTO\\Toto\\toto\\core\\*.yml*')),
     ('toto\\plugins\\extreme', glob('Z:\\software\\TOTO\\toto\\plugins\\extreme\\*.py')),
     ('toto\\plugins\\plots', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\plots\\*.py')),
@@ -187,7 +171,6 @@ data_files = [
     (r"", glob(os.path.join(PYTHON_SITEPACKAGES, "scipy", "extra-dll", "*.dll"))),
     ("mplcyberpunk\\data", glob(os.path.join(PYTHON_SITEPACKAGES,"mplcyberpunk","data",'*'))),
     ("dask", glob(os.path.join(PYTHON_SITEPACKAGES,"dask",'*.yaml'))),
-
     ("xarray\\static\\css", glob(os.path.join(PYTHON_SITEPACKAGES,"xarray","static","css",'*'))),
     ("xarray\\static\\html", glob(os.path.join(PYTHON_SITEPACKAGES,"xarray","static","html",'*'))),
     ("llvmlite\\binding", glob(os.path.join(PYTHON_SITEPACKAGES,"llvmlite","binding",'*.dll'))),
