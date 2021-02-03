@@ -183,11 +183,8 @@ setup(
     description=u"totoView - Calypso Science/MetOcean Solutions",
     author="Calypso Science",
     console=[{'script':'totoView.py',
-            'icon_resources': [(0, "totoview\\_tools\\toto16.ico"),(1, "totoview\\_tools\\toto32.ico")],
+            'icon_resources': [(0, "totoview\\_tools\\logo.ico"),(1, "totoview\\_tools\\logo.ico")],
             }],
-    # windows=[{'script':'totoView.py',
-    #         'icon_resources': [(0, "totoview\\_tools\\toto16.ico")],
-    #         }],
     options=options,
     data_files=data_files,
 )
