@@ -116,7 +116,7 @@ class TotoGUI(QMainWindow,FORM_CLASS):
         
         self.databackup=copy.deepcopy(data)
         self.setupUi(self)
-        self.setWindowIcon(QIcon(os.path.join(here,'_tools','toto16.ico').replace('\\library.zip','')))
+        self.setWindowIcon(QIcon(os.path.join(here,'_tools','logo.ico').replace('\\library.zip','')))
         pixmap = QPixmap(os.path.join(ssDir,'MO.png').replace('\\library.zip',''))
         self.logo_MO.setPixmap(pixmap)
         pixmap = QPixmap(os.path.join(ssDir,'calypso64.png').replace('\\library.zip',''))

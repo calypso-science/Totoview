@@ -56,6 +56,10 @@ for f in glob(os.path.join(PYTHON_SITEPACKAGES,"xarray","static","html","*")):
 for f in glob(os.path.join(PYTHON_SITEPACKAGES,"xarray","static","css","*")):
     dirname = os.path.join('xarray','static','css')
     totoviewdata_files.append((dirname, [f]))
+for f in glob(os.path.join(PYTHON_SITEPACKAGES,"wafo","*cp38-win_amd64*")):
+    dirname = os.path.join('wafo')
+    totoviewdata_files.append((dirname, [f]))
+
 
 def better_copy_files(self, destdir):
     """Overriden so that things can be included in the library.zip."""
@@ -89,19 +93,19 @@ def better_copy_files(self, destdir):
 
         arc.close()
 
-        # ## Here we add add and remove toto so all library gets included
-        # zin = zipfile.ZipFile (libpath, 'r')
-        # libpath_tmp=os.path.join(destdir,'libtmp.zip')
-        # zout = zipfile.ZipFile (libpath_tmp, 'w')
-        # for item in zin.infolist():
-        #     buffer = zin.read(item.filename)
-        #     if not ('toto/' in item.filename):
-        #         zout.writestr(item, buffer)
-        # zout.close()
-        # zin.close()
+        ## Here we add add and remove toto so all library gets included
+        zin = zipfile.ZipFile (libpath, 'r')
+        libpath_tmp=os.path.join(destdir,'libtmp.zip')
+        zout = zipfile.ZipFile (libpath_tmp, 'w')
+        for item in zin.infolist():
+            buffer = zin.read(item.filename)
+            if not ('toto/' in item.filename):
+                zout.writestr(item, buffer)
+        zout.close()
+        zin.close()
 
-        # os.remove(libpath)
-        # os.rename(libpath_tmp,libpath)
+        os.remove(libpath)
+        os.rename(libpath_tmp,libpath)
 
 
 original_copy_files = py2exe.runtime.Runtime.copy_files
@@ -112,7 +116,7 @@ py2exe.runtime.Runtime.copy_files = better_copy_files
 GDAL_DIR = "C:\\Program Files\\GDAL"
 MSVC_DIR = "C:\\Program Files (x86)\\Microsoft Visual Studio 9.0\\VC\\redist\\x86\\Microsoft.VC90.CRT"
 MSVC_DIR = "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\VC\\Redist\\MSVC\\14.28.29325\\x86\\Microsoft.VC142.CRT"
-DEST_DIR = "compiled64_withtoto"
+DEST_DIR = "compiled64_nototo"
 
 
 sys.path.extend([MSVC_DIR, GDAL_DIR])
@@ -124,7 +128,8 @@ options = {
         "skip_archive": True,
         "ascii": False,
         "xref": False,
-        "includes": ["toto","dask","six",'matplotlib',"mpl_toolkits.axisartist","mpl_toolkits.axes_grid","mpl_toolkits.axes_grid1",'pandas','PyQt5','mplcyberpunk','PyQt5.QtCore','PyQt5.QtWidgets','appdirs'],
+        #"includes": ["toto","dask","six",'matplotlib',"mpl_toolkits.axisartist","mpl_toolkits.axes_grid","mpl_toolkits.axes_grid1",'pandas','PyQt5','mplcyberpunk','PyQt5.QtCore','PyQt5.QtWidgets','appdirs'],
+        "includes": ["dask","six",'matplotlib',"mpl_toolkits.axisartist","mpl_toolkits.axes_grid","mpl_toolkits.axes_grid1",'pandas','PyQt5','mplcyberpunk','PyQt5.QtCore','PyQt5.QtWidgets','appdirs'],
         "dll_excludes": [],
         "excludes": ['_gtkagg', '_tkagg'],
         "packages" : ['packaging','xlwt','numpy','matplotlib', 'pandas','future','scipy','xarray',
@@ -132,10 +137,11 @@ options = {
                       'yaml', "numba","numdifftools","utide","wafo","netCDF4",
                       "encodings","mplcyberpunk","grid_strategy","mpl_toolkits.mplot3d",
                       "totoview","totoview.core","totoview.dialog","totoview.inputs",
-                      "toto","toto.inputs","toto.plugins",
-                      "toto.plugins.extreme","toto.plugins.plots","toto.plugins.statistics",
-                      "toto.plugins.tide","toto.plugins.tide","toto.plugins.transformations",
-                      "toto.plugins.wave","toto.plugins.woodside","xlrd"],
+                      # "toto","toto.inputs","toto.plugins",
+                      # "toto.plugins.extreme","toto.plugins.plots","toto.plugins.statistics",
+                      # "toto.plugins.tide","toto.plugins.tide","toto.plugins.transformations",
+                      # "toto.plugins.wave","toto.plugins.woodside",
+                      "xlrd","wafo"],
     }
 }
 
@@ -145,23 +151,20 @@ data_files = [
     ('', glob(r'C:\\Windows\\System32\\msvcr100.dll')),
     ('', glob(os.path.join(PYTHON_SITEPACKAGES,"scipy",".libs","*"))),
 
-    # ('', glob(r'C:\\Windows\\System32\\ntdll.dll')),
-    # ('', glob(r'C:\\Windows\\System32\\MSVCRT.dll')),
-    # ('', glob(r'C:\\Windows\\SysWOW64\\msvcr100_clr0400.dll')),
-    ('toto\\core', glob('Z:\\software\\TOTO\\Toto\\toto\\core\\*.yml*')),
-    ('toto\\plugins\\extreme', glob('Z:\\software\\TOTO\\toto\\plugins\\extreme\\*.py')),
-    ('toto\\plugins\\plots', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\plots\\*.py')),
-    ('toto\\plugins\\statistics', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\statistics\\*.py')),
-    ('toto\\plugins\\tide', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\tide\\*.py')),
-    ('toto\\plugins\\transformations', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\transformations\\*.py')),
-    ('toto\\plugins\\wave', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\wave\\*.py')),  
-    ('toto\\plugins\\woodside', glob('Z:\\software\\TOTO\\Toto\\Toto\\toto\\plugins\\woodside\\*.py')),
-    ('toto\\inputs', glob('Z:\\software\\TOTO\\Toto\\toto\\inputs\\*.py')),
-    ('toto\\outputs', glob('Z:\\software\\TOTO\\Toto\\toto\\outputs\\*.py')),        
-    ('toto\\interpolations', glob('Z:\\software\\TOTO\\Toto\\toto\\interpolations\\*.py')), 
-    ('toto\\filters', glob('Z:\\software\\TOTO\\Toto\\toto\\filters\\*.py')), 
-    ('toto\\selections', glob('Z:\\software\\TOTO\\Toto\\toto\\selections\\*.py')), 
-    ('toto\\cyclone', glob(os.path.join(PYTHON_SITEPACKAGES,'IBTrACS*.nc'))), 
+    # ('toto\\core', glob('Z:\\software\\TOTO\\Toto\\toto\\core\\*.yml*')),
+    # ('toto\\plugins\\extreme', glob('Z:\\software\\TOTO\\toto\\plugins\\extreme\\*.py')),
+    # ('toto\\plugins\\plots', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\plots\\*.py')),
+    # ('toto\\plugins\\statistics', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\statistics\\*.py')),
+    # ('toto\\plugins\\tide', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\tide\\*.py')),
+    # ('toto\\plugins\\transformations', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\transformations\\*.py')),
+    # ('toto\\plugins\\wave', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\wave\\*.py')),  
+    # ('toto\\plugins\\woodside', glob('Z:\\software\\TOTO\\Toto\\Toto\\toto\\plugins\\woodside\\*.py')),
+    # ('toto\\inputs', glob('Z:\\software\\TOTO\\Toto\\toto\\inputs\\*.py')),
+    # ('toto\\outputs', glob('Z:\\software\\TOTO\\Toto\\toto\\outputs\\*.py')),        
+    # ('toto\\interpolations', glob('Z:\\software\\TOTO\\Toto\\toto\\interpolations\\*.py')), 
+    # ('toto\\filters', glob('Z:\\software\\TOTO\\Toto\\toto\\filters\\*.py')), 
+    # ('toto\\selections', glob('Z:\\software\\TOTO\\Toto\\toto\\selections\\*.py')), 
+    # ('toto\\cyclone', glob(os.path.join(PYTHON_SITEPACKAGES,'IBTrACS*.nc'))), 
     ('totoview\\_tools', glob('totoview\\_tools\\*.*')),
     ("Microsoft.VC90.CRT", glob(os.path.join(MSVC_DIR, '*.*'))),
     (r"platforms", glob(os.path.join(PYTHON_SITEPACKAGES, "PyQt5", "Qt", "plugins", "platforms","*.dll"))),
@@ -175,6 +178,7 @@ data_files = [
     ("xarray\\static\\html", glob(os.path.join(PYTHON_SITEPACKAGES,"xarray","static","html",'*'))),
     ("llvmlite\\binding", glob(os.path.join(PYTHON_SITEPACKAGES,"llvmlite","binding",'*.dll'))),
     ("utide\\data", glob(os.path.join(PYTHON_SITEPACKAGES,"utide","data",'*.*'))),
+
     ]
 
 setup(
