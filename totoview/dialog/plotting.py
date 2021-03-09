@@ -389,6 +389,23 @@ class Plotting(object):
                         ax.set_legend(units=data[file]['metadata'][var]['units'])
 
 
+                    elif 'scatter'==plot_name:
+                        ax1f1.set_gid('ax')
+
+                        if index_name=='time':
+                            #X=date2num(x.array)
+                            plot_ft=getattr(ax1f1, 'plot')
+                            plot_ft(x,y,'+',label=var,gid=file+';'+var,linewidth=0.8)
+
+                        else:
+                            plot_ft=getattr(ax1f1, 'scatter')
+                            plot_ft(x,y,label=var,gid=file+';'+var)
+
+                        
+                        self.add_metadata(ax1f1,data[file]['metadata'][index_name],data[file]['metadata'][var])
+                        if index_name=='time':
+                            self.sc.fig1.autofmt_xdate()
+                        ax1f1.grid(True)
                     else:
                         ax1f1.set_gid('ax')
                         plot_ft=getattr(ax1f1, plot_name)
@@ -396,6 +413,7 @@ class Plotting(object):
                             typ='-'
                         else:
                             typ='+'
+
                         plot_ft(x,y,typ,label=var,gid=file+';'+var,linewidth=0.8)
                         #ax1f1.set_xlim(x[0],x[-1])
                         
