@@ -282,7 +282,7 @@ class wrapper_plugins(QDialog):
                 dfout=F(**inp,args=opt)
             except Exception as exc:
                 display_error("Cannot run {} function:\n{}".format(self.fct.__name__, exc))
-                self.close()
+                #self.close()
                 return
 
             if isinstance(dfout,pd.DataFrame):
