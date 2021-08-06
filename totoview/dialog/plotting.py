@@ -212,6 +212,8 @@ class SelectFromCollection(object):
 class MyCustomToolbar(NavigationToolbar): 
     def __init__(self, plotCanvas,parent,coordinates):
         NavigationToolbar.__init__(self, plotCanvas,parent,coordinates)
+        
+
         iconDir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
             "..", "_tools", "").replace('\\library.zip','')
         self.plotCanvas=plotCanvas
@@ -232,6 +234,41 @@ class MyCustomToolbar(NavigationToolbar):
             "Stats by selection", self.select_data('spanselector'))
         self.d.setToolTip("Stats by selection")
 
+    def save_figure(self):
+        
+        for child in self.plotCanvas.fig1.get_children(): 
+
+            if hasattr(child,'xaxis'):           
+                if hasattr(child,'legend'):
+                    child.legend(frameon = 0)
+                    for text in child.legend().get_texts():
+                        text.set_color("black")
+                #child.set_prop_cycle('color',col)
+                child.set_facecolor('gainsboro')
+                child.xaxis.label.set_color('black')
+                child.yaxis.label.set_color('black')
+                child.tick_params(axis='x', colors='black')
+                child.tick_params(axis='y', colors='black')  
+                
+
+        #self.plotCanvas.draw_idle()
+        self.plotCanvas.fig1.savefig('test.png',facecolor='w')#self.plotCanvas.fig1
+        for child in self.plotCanvas.fig1.get_children():
+            child.set_facecolor([0.12941176470588237, 0.1607843137254902, 0.27450980392156865, 1.0])
+            if hasattr(child,'xaxis'):
+                child.xaxis.label.set_color('0.9')
+                child.yaxis.label.set_color('0.9')
+                child.tick_params(axis='x', colors='0.9')
+                child.tick_params(axis='y', colors='0.9') 
+                
+            #if hasattr(child,'legend'):
+                frame = child.legend().get_frame()
+                frame.set_facecolor([0.12941176470588237, 0.1607843137254902, 0.27450980392156865, 1.0])
+                for text in child.legend().get_texts():
+                    text.set_color("0.9")
+                frame.set_alpha(0)
+
+        self.plotCanvas.draw_idle() 
 
     def remove_series(self,id='selected'):
         for child in self.plotCanvas.fig1.get_children():
@@ -296,7 +333,7 @@ class Plotting(object):
 
 
     def refresh_plot(self,data,File,Var):
-
+        from cycler import cycler
         with plt.style.context("cyberpunk"):
 
             self.rmmpl()
@@ -305,7 +342,14 @@ class Plotting(object):
             self.sc.fig1.clf()
 
             ax1f1 =self.sc.fig1.add_subplot(111)
-            
+            #ax1f1.set_prop_cycle(cycler('color', ['08F7FE', 'FE53BB', 'F5D300', '00ff41', 'r', '9467bd', ]))
+            col=np.array(plt.get_cmap('tab20').colors)
+            old_col=copy.deepcopy(col)
+            col[0]=old_col[1]
+            col[1]=old_col[6]
+            col[6]=old_col[0]
+            ax1f1.set_prop_cycle('color',col)
+
             index_name0=None
             for i,file in enumerate(File):
                 for var in Var[i]:
