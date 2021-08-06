@@ -7,6 +7,7 @@ class InterpWindow(BaseWindow):
     def __init__(self,X, parent=None):
         super(InterpWindow, self).__init__(folder=toto.interpolations,title='Interpolating toolbox',parent=parent)
         self.X0=X[0].copy()
+        self.Xs=X.copy()
         self.X=X
         self.refresh_plot()
 
@@ -29,8 +30,14 @@ class InterpWindow(BaseWindow):
         run_ft=self._import_from('toto.interpolations.%s' % fct_name,fct_name)
         opt=self.get_options(self.opt[self.method_names.currentRow()]) # get all option as dict
         #Only play with first file and first variable
-        self.X[0][self.X[0].keys()[0]]=run_ft(self.X[0][self.X[0].keys()[0]],opt)
-
+        tmp=run_ft(self.X[0][self.X[0].keys()[0]],opt)
+        old_index=self.X[0][self.X[0].keys()[0]].index
+        if (len(tmp.index) != len(old_index)) or\
+               (tmp.index[0]!=old_index[0]):
+            self.X[0]=tmp.to_frame()
+        else:
+            self.X[0][self.X[0].keys()[0]]=tmp
+        
         self.refresh_plot()
 
     def save(self):
@@ -38,13 +45,23 @@ class InterpWindow(BaseWindow):
         fct_name=idx.text()
         run_ft=self._import_from('toto.interpolations.%s' % fct_name,fct_name)
         opt=self.get_options(self.opt[self.method_names.currentRow()]) # get all option as dict
-        for i in range(0,len(self.X)):
-            for var in self.X[i].keys():
-                self.X[i][var]=run_ft(self.X[i][var],opt)
+        for i in range(0,len(self.Xs)):
+            for j,var in enumerate(self.Xs[i].keys()):
+                old_index=self.X[i].index
+
+                tmp=run_ft(self.Xs[i][var],opt)
+                if (len(tmp.index) != len(old_index)) or\
+                       (tmp.index[0]!=old_index[0]):
+
+                    self.X[i]=tmp.to_frame()
+                else:
+                    self.X[i][var]=tmp
+
 
         self.close()
     def reset(self):
-        self.X[0][self.X[0].keys()[0]]=self.X0[self.X[0].keys()[0]]
+        
+        self.X[0]=self.X0.copy()
         self.refresh_plot()
 
     def cancel(self):

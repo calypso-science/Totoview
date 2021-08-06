@@ -375,7 +375,17 @@ class TotoGUI(QMainWindow,FORM_CLASS):
         main = InterpWindow(data_to_filter) 
         df=main.exec()
         for i,file in enumerate(checks_files):
-            self.data[file]['dataframe'][check_vars[i]]=df[i]
+            if (len(df[i].index) != len(self.data[file]['dataframe'].index)) or\
+                               (df[i].index[0]!=self.data[file]['dataframe'].index[0]): 
+                df[i]['time']=df[i].index
+                self.data.add_dataframe([df[i]],[file+'_new'])
+            else:
+                self.data[file]['dataframe'][check_vars[i]]=df[i]
+
+        self.list_file.populate_tree(self.data)
+        self.list_file.check_item(checks_dataframe)
+
+
         self.plotting.refresh_plot(self.data,checks_files,check_vars)
         self.list_file.blocker.unblock()
 

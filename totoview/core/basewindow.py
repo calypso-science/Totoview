@@ -178,8 +178,8 @@ class BaseWindow(QDialog):
             else:
                 typ='+'
 
-            ax.plot(self.X0[self.X[0].keys()[0]],label='original')
-            ax.plot(self.X[0][self.X[0].keys()[0]],typ,label='interpolated')
+            ax.plot(self.X0.index,self.X0[self.X[0].keys()[0]],label='original')
+            ax.plot(self.X[0].index,self.X[0][self.X[0].keys()[0]],typ,label='interpolated')
             plt.grid()
             self.figure.autofmt_xdate()
             ax.legend()
