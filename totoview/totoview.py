@@ -272,26 +272,39 @@ class TotoGUI(QMainWindow,FORM_CLASS):
                 data_to_process.append(self.data[file])
 
             fct=self._import_from('toto.plugins.%s'% module[0],module[1])
-            if len(data_to_process)>0:
-                sc=wrapper_plugins(data_to_process,fct,self.lastpath)
-                dfout=sc.exec()
-                if dfout:
-                    for i,df in enumerate(dfout):
-                        if (len(df.index) != len(data_to_process[i]['dataframe'].index)) or\
-                               (df.index[0]!=data_to_process[i]['dataframe'].index[0]):
 
-                            self.data.add_dataframe([df],[checks_dataframe[i]+'_new'])
-                        else:
-                            self.data.replace_dataframe([checks_dataframe[i]],[dfout[i]])
+            if len(data_to_process)==0 and fct.__name__=='recreate':
+                tf=TotoFrame()
+                tf.add_dataframe([pd.DataFrame()],['empty'])
+                tf['empty1']['filename']='empty'
+                data_to_process.append(tf['empty1'])
+                checks_dataframe=['tide']
 
-                    
-                self.list_file.populate_tree(self.data)
-                self.list_file.check_item(checks_dataframe)
-                checks_files_after,check_vars_after,checks_dataframe_after=self.list_file.get_all_items()
-                self.plotting.refresh_plot(self.data,checks_files_after,check_vars_after)
-                
-            else:
+            elif len(data_to_process)==0:
                 display_error('You need to select at least one file')
+                self.list_file.blocker.unblock()
+                return out
+
+
+            sc=wrapper_plugins(data_to_process,fct,self.lastpath)
+            dfout=sc.exec()
+            if dfout:
+                for i,df in enumerate(dfout):
+                    if (len(df.index) != len(data_to_process[i]['dataframe'].index)) or\
+                           (df.index[0]!=data_to_process[i]['dataframe'].index[0]):
+
+                        self.data.add_dataframe([df],[checks_dataframe[i]+'_new'])
+                    else:
+                        self.data.replace_dataframe([checks_dataframe[i]],[dfout[i]])
+
+                
+            self.list_file.populate_tree(self.data)
+            self.list_file.check_item(checks_dataframe)
+            checks_files_after,check_vars_after,checks_dataframe_after=self.list_file.get_all_items()
+            self.plotting.refresh_plot(self.data,checks_files_after,check_vars_after)
+                
+            #else:
+            #    display_error('You need to select at least one file')
             self.list_file.blocker.unblock()
         return out
 

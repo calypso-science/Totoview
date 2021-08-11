@@ -6,11 +6,16 @@ from PyQt5.QtWidgets import QFormLayout,QHBoxLayout,QStackedWidget,QWidget,QPush
                             QLineEdit,QLabel,QGroupBox,QRadioButton,QButtonGroup,QScrollArea,QDateTimeEdit,QComboBox
 
 from PyQt5.QtGui import QIntValidator,QDoubleValidator
+from ..dialog.CustomDialog import CalendarDialog
 import os
-def pick_dir(wd):
+def pick_dir(wd,mode='dir'):
     def cmd():
         dialog = QFileDialog()
-        folder_path = dialog.getExistingDirectory(None, "Select Folder")
+        if mode=='dir':
+            folder_path = dialog.getExistingDirectory(None, "Select Folder")
+        else:
+            folder_path = dialog.getOpenFileName(None, "Select File")[0]
+
         wd.setText(folder_path)
     return cmd
 
@@ -59,28 +64,32 @@ def get_layout_from_sig(sig,lastpath=""):
             layout[arg]=box
         else:
             wd=QLineEdit('')
-            if isinstance(args[arg],int):
+            if hasattr(args[arg],'year'):
+                wd=QDateTimeEdit() 
+                wd.setDisplayFormat("dd/MM/yyyy hh:mm:ss")
+
+            elif isinstance(args[arg],int):
                 wd.setValidator(QIntValidator())
                 wd.setText(str(args[arg]))
             elif isinstance(args[arg],float):
                 wd.setValidator(QDoubleValidator())
                 wd.setText(str(args[arg]))
-            elif hasattr(args[arg],'year'):
-                wd=QDateTimeEdit() 
-                wd.setDisplayFormat("dd/MM/yyyy hh:mm:ss")
             elif isinstance(args[arg],str):
                 wd.setText(args[arg])
 
             elif isinstance(args[arg],list):
                 wd.setText(' '.join([str(i) for i in args[arg]])) 
                
-            if isinstance(args[arg],str) and os.path.isdir(args[arg]):
+            if isinstance(args[arg],str) and (os.path.isdir(args[arg]) or args[arg].endswith('.txt')):
                 container=QWidget()
                 ly=QHBoxLayout()
                 wd.setText(lastpath)
                 ly.addWidget(wd)
                 bttn=QPushButton('...')
-                bttn.clicked.connect(pick_dir(wd))
+                if os.path.isdir(args[arg]):
+                    bttn.clicked.connect(pick_dir(wd,mode='dir'))
+                else:
+                    bttn.clicked.connect(pick_dir(wd,mode='file'))
                 ly.addWidget(bttn)
                 container.setLayout(ly)
                 Vl.addRow(arg,container)
