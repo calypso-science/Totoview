@@ -677,6 +677,10 @@ class TotoGUI(QMainWindow,FORM_CLASS):
             display_error('You need to select at least on file')
 
     def import_data(self,reader,filenames):
+        if not hasattr('toto.inputs',reader):
+            display_error('reader %s not found' % reader)
+            return []
+
 
 
         try:
