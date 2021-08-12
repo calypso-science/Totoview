@@ -530,39 +530,43 @@ class TotoGUI(QMainWindow,FORM_CLASS):
     def load_tf(self,totoframe):
         self.data=totoframe
 
-    def load_files(self,filenames):
+    def load_files(self,filenames,gd_reader=None):
         if isinstance(filenames,str):
             filenames=[filenames]
 
         ext='.'+os.path.split(filenames[0])[-1].split('.')[-1]
 
         readers=[d for d in dir(toto.inputs) if not d.startswith('_')]
-        gd_reader=[]
-        for reader in readers:
-            run_ft=self._import_from('toto.inputs.%s' % reader,'%sfile' % reader.upper())
-            exs=run_ft.defaultExtensions()
-            if ext in exs:
-                gd_reader.append(reader)
-                
+        
+        if not gd_reader:
+            gd_reader=[]
 
-        if len(gd_reader)<1:
-            display_error('could not find a reader for extension: %s' % ext) 
-            sys.exit(-1)
+            for reader in readers:
+                run_ft=self._import_from('toto.inputs.%s' % reader,'%sfile' % reader.upper())
+                exs=run_ft.defaultExtensions()
+                if ext in exs:
+                    gd_reader.append(reader)
+                    
 
-        if len(gd_reader)>1:
-            readername=['%sfile' %reader.upper() for reader in gd_reader]
-            mss=show_list_file(readername,title='Choose a reader',multiple=False)
-            reader=mss.exec()
-            if reader is None:
-                return
-            if len(reader)==0:
-                reader=[readername[0]]
-                
+            if len(gd_reader)<1:
+                display_error('could not find a reader for extension: %s' % ext) 
+                sys.exit(-1)
 
-            gd_reader=reader[0].replace('file','').lower()
+            if len(gd_reader)>1:
+                readername=['%sfile' %reader.upper() for reader in gd_reader]
+                mss=show_list_file(readername,title='Choose a reader',multiple=False)
+                reader=mss.exec()
+                if reader is None:
+                    return
+                if len(reader)==0:
+                    reader=[readername[0]]
+                    
+
+                gd_reader=reader[0].replace('file','').lower()
 
         if isinstance(gd_reader,list):
-            gd_reader=gd_reader[0]    
+            gd_reader=gd_reader[0]  
+
         df=self.import_data(gd_reader,filenames)
         self.load_df(df,filename=filenames)
 
@@ -791,7 +795,7 @@ class TotoGUI(QMainWindow,FORM_CLASS):
 # --------------------------------------------------------------------------------}
 # --- Mains 
 # --------------------------------------------------------------------------------{
-def showApp(firstArg=None,dataframe=None,filenames=[]):
+def showApp(firstArg=None,dataframe=None,filenames=[],reader=None):
     """
     The main function to start the data frame GUI.
     """
@@ -811,7 +815,7 @@ def showApp(firstArg=None,dataframe=None,filenames=[]):
     if (dataframe is not None) and (len(dataframe)>0):
         frame.load_df(dataframe)
     elif len(filenames)>0:
-        frame.load_files(filenames)
+        frame.load_files(filenames,reader)
 
     sys.exit(app.exec_())
 
