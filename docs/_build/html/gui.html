@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The GUI &#8212; Totoview 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Support" href="support.html" />
+    <link rel="prev" title="How to load" href="loading.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <a class="reference internal image-reference" href="_images/calypso.png"><img alt="_images/calypso.png" class="align-right" src="_images/calypso.png" style="width: 150px;" /></a>
+<div class="section" id="the-gui">
+<h1>The GUI<a class="headerlink" href="#the-gui" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="main-view">
+<h2>Main View<a class="headerlink" href="#main-view" title="Permalink to this headline">¶</a></h2>
+<p>This is TOTOVIEW main GUI.</p>
+<a class="reference internal image-reference" href="_images/mainview.png"><img alt="_images/mainview.png" class="align-center" src="_images/mainview.png" style="height: 300px;" /></a>
+<p>The right-hand side shows all the file and variable that has been loaded into TOTOVIEW.
+The top bar shows the file input/output menu, Data manipulation menu and all the plugins.
+A description from all plugins and functions can obtained by going to the Help menu on top right-hand corner.
+To display a variable into the graph, the user must tick the variable name and a tick mark will appear before the variable name.
+Multiple variables can be plotted onto the graph. User can click on “Select All variables” to select them all or “Unselect All” to remove them from the graph.
+When user right clicks on the variable name, different attribute can be changed (i.e. name, unit, scaling factor, offset).
+If user right clicks on a filename, the file index (time by default) can be changed. This is usefull for plotting scatter plot for exemple.</p>
+<p>Different type of plots can be displayed by selecting the plot type on the dropdown menu on top of the variable selection panel on the right-hand side.</p>
+</div>
+<div class="section" id="the-toolbar">
+<h2>The toolbar<a class="headerlink" href="#the-toolbar" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/toolbar.png"><img alt="_images/toolbar.png" class="align-center" src="_images/toolbar.png" style="width: 500px;" /></a>
+<p>The toolbar is taken from Matplotlib toobar. Detail information can be found in this <a class="reference external" href="https://matplotlib.org/3.2.2/users/navigation_toolbar.html">documentation</a></p>
+<p>Some extra button have been added to the toolbar. Any of these buttons can not be used in conjunction with Zoom/Pan button:</p>
+<a class="reference internal image-reference" href="_images/select.png"><img alt="_images/select.png" class="align-left" src="_images/select.png" style="width: 50px;" /></a>
+<ul class="simple">
+<li><p>The Seclect button:</p></li>
+</ul>
+<p>Use this button to draw a rectangle to select points. Selected point will be displayed in red.</p>
+<a class="reference internal image-reference" href="_images/selectpeaks.png"><img alt="_images/selectpeaks.png" class="align-center" src="_images/selectpeaks.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/calendar.png"><img alt="_images/calendar.png" class="align-left" src="_images/calendar.png" style="width: 50px;" /></a>
+<ul class="simple">
+<li><p>The Calendar button:</p></li>
+</ul>
+<p>Use this button select data between two dates. Selected point will be displayed in red.</p>
+<a class="reference internal image-reference" href="_images/ic.png"><img alt="_images/ic.png" class="align-left" src="_images/ic.png" style="width: 50px;" /></a>
+<ul class="simple">
+<li><p>The Peak button:</p></li>
+</ul>
+<p>Use this button select peaks in a timeseries. Selected point will be displayed in red. This function is using the scipy function <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html">find_peaks</a></p>
+<a class="reference internal image-reference" href="_images/selectpeaks.png"><img alt="_images/selectpeaks.png" class="align-center" src="_images/selectpeaks.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/table.png"><img alt="_images/table.png" class="align-left" src="_images/table.png" style="width: 50px;" /></a>
+<ul class="simple">
+<li><p>The table button:</p></li>
+</ul>
+<p>Use this button draw a rectangle aournd the data. Statistics will be calculated for the selected data points and displayed on top of the graph.</p>
+<a class="reference internal image-reference" href="_images/stats.png"><img alt="_images/stats.png" class="align-center" src="_images/stats.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="the-shortcuts">
+<h2>The shortcuts<a class="headerlink" href="#the-shortcuts" title="Permalink to this headline">¶</a></h2>
+<p>Once data have selected using the toolbar buttons, the user can choose to:</p>
+<ul class="simple">
+<li><p>Delete the selected data by pressing “d”</p></li>
+<li><p>Saving the selected data into a new DataFame by pressing “Enter”</p></li>
+</ul>
+<p>A variable from one file can be copy and pasted to another file by using the CTRL+C and CTRL+V command.
+Variables can also be dragged from one file to another.
+If the index (i.e time) is different from one file to another the variable will be interpolated. BECARFULL when moving direction</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Totoview</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html"> How to install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading.html"> loading</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> The GUI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main-view">Main View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-toolbar">The toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-shortcuts">The shortcuts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="support.html"> support</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="loading.html" title="previous chapter">How to load</a></li>
+      <li>Next: <a href="support.html" title="next chapter">Support</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Calypso Science.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/gui.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
