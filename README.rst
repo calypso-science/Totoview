@@ -2,6 +2,11 @@ Totoview
 ===========
 Python Gui for visualizing and processing timeseries using Toto
 
+
+.. image:: https://readthedocs.org/projects/totoview/badge/?version=latest
+    :target: https://totoview.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 Documentation:
 --------------
 The documentation is hosted on ReadTheDocs at https://totoview.readthedocs.io/.
