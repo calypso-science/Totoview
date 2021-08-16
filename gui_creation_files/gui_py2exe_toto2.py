@@ -127,7 +127,7 @@ options = {
         "includes": ["toto","dask","six",'matplotlib',"mpl_toolkits.axisartist","mpl_toolkits.axes_grid","mpl_toolkits.axes_grid1",'pandas','PyQt5','mplcyberpunk','PyQt5.QtCore','PyQt5.QtWidgets','appdirs'],
         "dll_excludes": [],
         "excludes": ['_gtkagg', '_tkagg'],
-        "packages" : ['packaging','xlwt','numpy','matplotlib', 'pandas','future','scipy','xarray',
+        "packages" : ['oceans','packaging','xlwt','numpy','matplotlib', 'pandas','future','scipy','xarray',
                       'PyQt5', 'windrose','attrdict','ctypes', 'openpyxl',
                       'yaml', "numba","numdifftools","utide","wafo","netCDF4",
                       "encodings","mplcyberpunk","grid_strategy","mpl_toolkits.mplot3d",
