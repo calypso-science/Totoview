@@ -9,11 +9,12 @@ def main(filenames=[],reader=None,dataframes=None):
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(prog='totoView.py', usage='%(prog)s file1.txt [options]')
+    parser = argparse.ArgumentParser(prog='totoView.py', usage='%(prog)s [options]')
     ## main arguments
-    parser.add_argument('files', type=str,nargs='+',default=None,help='name of the files to read')
+    parser.add_argument('files',nargs='*',default=[],help='name of the files to read')
     ## options
     parser.add_argument('--reader','-r',type=str,default=None,help='name of the reader to use')
 
     args = parser.parse_args()
+
     main(filenames=args.files,reader=args.reader)

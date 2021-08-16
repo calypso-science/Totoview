@@ -57,7 +57,7 @@ The variable MUST be called TotoPath.
 Using the compiled version
 --------------------------
 There are two versions of TOTOVIEW that are already compiled for Windows user.
-They can be found on the GitHub page:
+They can be found on the GitHub page (https://github.com/calypso-science/Totoview/releases):
 
 • totoview_withtoto.exe.
 

@@ -18,7 +18,7 @@ for f in glob.glob('totoview/_tools/*.*'):
 
 setuptools.setup(
     name="totoview",
-    version="0.1.0",
+    version="1.1.0",
     author="Remy Zyngfogel",
     author_email="R.zyngfogel@calypso.science",
     description="A GUI toolbox for processing timeseries'",
