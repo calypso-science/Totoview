@@ -30,24 +30,24 @@ from matplotlib.dates import num2date
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
-# try:
-import toto
-# except:
-#     # try:
-#         # toto
-#         TOTO_PATH = os.getenv('TotoPath') #"C:\\Users\\remy\\Software\\Toto\\"
-#         sys.path.append(TOTO_PATH)
-#         if not TOTO_PATH:
-#             raise ValueError("Error: problem loading toto package,Try setting up the toto path as environmental variable named: TotoPath")
-#     # except:
-#     #     print('')
-#     #     print('')
-#     #     print('Error: problem loading toto package:')
-#     #     print('  - Check if this package is installed ( e.g. type: `python setup_toto.py install`)')
-#     #     print('Or')
-#     #     print('  - Try setting up the toto path as environmental variable named: TotoPath ')
-#     #     print('')
-#     #     sys.exit(-1)
+try:
+    import toto
+except:
+    try:
+        toto
+        TOTO_PATH = os.getenv('TotoPath') #"C:\\Users\\remy\\Software\\Toto\\"
+        sys.path.append(TOTO_PATH)
+        if not TOTO_PATH:
+            raise ValueError("Error: problem loading toto package,Try setting up the toto path as environmental variable named: TotoPath")
+    except:
+        print('')
+        print('')
+        print('Error: problem loading toto package:')
+        print('  - Check if this package is installed ( e.g. type: `python setup_toto.py install`)')
+        print('Or')
+        print('  - Try setting up the toto path as environmental variable named: TotoPath ')
+        print('')
+        sys.exit(-1)
 
 from PyQt5.Qt import *
 
