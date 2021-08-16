@@ -34,11 +34,12 @@ try:
     import toto
 except:
     try:
-        toto
         TOTO_PATH = os.getenv('TotoPath') #"C:\\Users\\remy\\Software\\Toto\\"
         sys.path.append(TOTO_PATH)
         if not TOTO_PATH:
-            raise ValueError("Error: problem loading toto package,Try setting up the toto path as environmental variable named: TotoPath")
+            raise ValueError("Error: problem setting the TotoPath")
+        else:
+            import toto
     except:
         print('')
         print('')
