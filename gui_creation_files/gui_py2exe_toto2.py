@@ -37,6 +37,7 @@ for f in matplotlibdata:
 
 
 totoviewdata_files=[]
+
 # for f in glob('totoview\\_tools\\*.*'):
 #     dirname = os.path.join('totoview','_tools')
 #     totoviewdata_files.append((dirname, [f]))
@@ -55,6 +56,9 @@ for f in glob(os.path.join(PYTHON_SITEPACKAGES,"xarray","static","html","*")):
     totoviewdata_files.append((dirname, [f]))
 for f in glob(os.path.join(PYTHON_SITEPACKAGES,"xarray","static","css","*")):
     dirname = os.path.join('xarray','static','css')
+    totoviewdata_files.append((dirname, [f]))
+for f in glob(os.path.join(PYTHON_SITEPACKAGES,"wafo","*cp38-win_amd64*")):
+    dirname = os.path.join('wafo')
     totoviewdata_files.append((dirname, [f]))
 
 def better_copy_files(self, destdir):
@@ -135,7 +139,7 @@ options = {
                       "toto","toto.inputs","toto.plugins",
                       "toto.plugins.extreme","toto.plugins.plots","toto.plugins.statistics",
                       "toto.plugins.tide","toto.plugins.tide","toto.plugins.transformations",
-                      "toto.plugins.wave","toto.plugins.woodside","xlrd"],
+                      "toto.plugins.wave","toto.plugins.woodside","xlrd","wafo"],
     }
 }
 
@@ -148,19 +152,19 @@ data_files = [
     # ('', glob(r'C:\\Windows\\System32\\ntdll.dll')),
     # ('', glob(r'C:\\Windows\\System32\\MSVCRT.dll')),
     # ('', glob(r'C:\\Windows\\SysWOW64\\msvcr100_clr0400.dll')),
-    ('toto\\core', glob('Z:\\software\\TOTO\\Toto\\toto\\core\\*.yml*')),
-    ('toto\\plugins\\extreme', glob('Z:\\software\\TOTO\\toto\\plugins\\extreme\\*.py')),
-    ('toto\\plugins\\plots', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\plots\\*.py')),
-    ('toto\\plugins\\statistics', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\statistics\\*.py')),
-    ('toto\\plugins\\tide', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\tide\\*.py')),
-    ('toto\\plugins\\transformations', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\transformations\\*.py')),
-    ('toto\\plugins\\wave', glob('Z:\\software\\TOTO\\Toto\\toto\\plugins\\wave\\*.py')),  
-    ('toto\\plugins\\woodside', glob('Z:\\software\\TOTO\\Toto\\Toto\\toto\\plugins\\woodside\\*.py')),
-    ('toto\\inputs', glob('Z:\\software\\TOTO\\Toto\\toto\\inputs\\*.py')),
-    ('toto\\outputs', glob('Z:\\software\\TOTO\\Toto\\toto\\outputs\\*.py')),        
-    ('toto\\interpolations', glob('Z:\\software\\TOTO\\Toto\\toto\\interpolations\\*.py')), 
-    ('toto\\filters', glob('Z:\\software\\TOTO\\Toto\\toto\\filters\\*.py')), 
-    ('toto\\selections', glob('Z:\\software\\TOTO\\Toto\\toto\\selections\\*.py')), 
+    ('toto\\core', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\core\\*.yml*')),
+    ('toto\\plugins\\extreme', glob('C:\\Users\\rzyng\\Documents\\TOTO\\toto\\plugins\\extreme\\*.py')),
+    ('toto\\plugins\\plots', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\plugins\\plots\\*.py')),
+    ('toto\\plugins\\statistics', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\plugins\\statistics\\*.py')),
+    ('toto\\plugins\\tide', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\plugins\\tide\\*.py')),
+    ('toto\\plugins\\transformations', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\plugins\\transformations\\*.py')),
+    ('toto\\plugins\\wave', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\plugins\\wave\\*.py')),  
+    ('toto\\plugins\\woodside', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\Toto\\toto\\plugins\\woodside\\*.py')),
+    ('toto\\inputs', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\inputs\\*.py')),
+    ('toto\\outputs', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\outputs\\*.py')),        
+    ('toto\\interpolations', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\interpolations\\*.py')), 
+    ('toto\\filters', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\filters\\*.py')), 
+    ('toto\\selections', glob('C:\\Users\\rzyng\\Documents\\TOTO\\Toto\\toto\\selections\\*.py')), 
     ('toto\\cyclone', glob(os.path.join(PYTHON_SITEPACKAGES,'IBTrACS*.nc'))), 
     ('totoview\\_tools', glob('totoview\\_tools\\*.*')),
     ("Microsoft.VC90.CRT", glob(os.path.join(MSVC_DIR, '*.*'))),
