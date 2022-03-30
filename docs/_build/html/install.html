@@ -37,11 +37,15 @@
 <h1>Installation:<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="where-to-get-it">
 <h2>Where to get it<a class="headerlink" href="#where-to-get-it" title="Permalink to this headline">¶</a></h2>
-<p>The source code is currently hosted on GitHub at: <a class="reference external" href="https://github.com/calypso-science/Totoview">https://github.com/calypso-science/Totoview</a></p>
+<p>The source code is currently hosted on GitHub at: <a class="reference external" href="https://github.com/calypso-science/Totoview">https://github.com/calypso-science/Totoview</a>
+Clone the repo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/calypso-science/Totoview.git
+</pre></div>
+</div>
 </div>
 <div class="section" id="module-requirements">
 <h2>Module requirements:<a class="headerlink" href="#module-requirements" title="Permalink to this headline">¶</a></h2>
-<p>Toto module needs to be installed:
+<p>Toto module needs to be installed see <a class="reference external" href="https://totodoc.readthedocs.io/en/latest/install.htm">https://totodoc.readthedocs.io/en/latest/install.htm</a>:
 The source code is currently hosted on GitHub at: <a class="reference external" href="https://github.com/calypso-science/Toto">https://github.com/calypso-science/Toto</a></p>
 <p>For windows user, if using the compiled version (.exe file)A environmental variable must be setup
 To set it up temporarily:</p>
@@ -52,10 +56,6 @@ To set it up temporarily:</p>
 </div>
 <div class="section" id="install-from-sources">
 <h2>Install from sources<a class="headerlink" href="#install-from-sources" title="Permalink to this headline">¶</a></h2>
-<dl class="simple">
-<dt>Toto toolbox needs to be installed :</dt><dd><p>see <a class="reference external" href="https://github.com/calypso-science/Toto">https://github.com/calypso-science/Toto</a> for instructions</p>
-</dd>
-</dl>
 <p>Install requirements. Navigate to the base root of totoview and execute:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -r requirements.txt
 </pre></div>
@@ -65,28 +65,54 @@ To set it up temporarily:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="windows-installation">
-<h2>Windows installation:<a class="headerlink" href="#windows-installation" title="Permalink to this headline">¶</a></h2>
-<p>Once installed, WINDOWS user must set up an Environmental variable with the folder name from where TOTO has been installed.
-The variable MUST be called TotoPath.</p>
-<a class="reference internal image-reference" href="_images/windows_path.png"><img alt="_images/windows_path.png" class="align-center" src="_images/windows_path.png" style="height: 150px;" /></a>
-</div>
-<div class="section" id="using-the-compiled-version">
-<h2>Using the compiled version<a class="headerlink" href="#using-the-compiled-version" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-the-compiled-version-on-windows">
+<h2>Using the compiled version on WINDOWS<a class="headerlink" href="#using-the-compiled-version-on-windows" title="Permalink to this headline">¶</a></h2>
 <p>There are two versions of TOTOVIEW that are already compiled for Windows user.
-They can be found on the GitHub page:</p>
+They can be found on the GitHub page (<a class="reference external" href="https://github.com/calypso-science/Totoview/releases">https://github.com/calypso-science/Totoview/releases</a>):</p>
 <ul class="simple">
 <li><p>totoview_withtoto.exe.</p></li>
 </ul>
 <blockquote>
-<div><p>This version will install TOTO and TOTOVIEW. No need to install TOTO, it is included in it. However, you will need to wait for a new release to update your code</p>
+<div><p>This version will install TOTO and TOTOVIEW. No need to install TOTO, it is included in it. However, you will need to wait for a new release to update your code. In this version it is not possible to get the extra plugins</p>
 </div></blockquote>
 <ul class="simple">
 <li><p>totoview_nototo.exe.</p></li>
 </ul>
 <blockquote>
-<div><p>This version will install TOTOVIEW and TOTO’s requirement. You still need to install TOTO but you can skip the requirement installation. This is easier to update TOTO’s code, just need to pull the updated code from GitHub and re-install TOTO.</p>
+<div><p>This version will install TOTOVIEW and TOTO’s requirement.
+You still need to install TOTO but you can skip the requirement installation.
+This is easier to update TOTO’s code, just need to pull the updated code from GitHub and re-install TOTO. To do follow this steps:</p>
 </div></blockquote>
+<div class="section" id="step-1-clone">
+<h3>Step 1: Clone<a class="headerlink" href="#step-1-clone" title="Permalink to this headline">¶</a></h3>
+<p>Clone the TOTO repo from github:
+.. code:: bash</p>
+<blockquote>
+<div><p>git clone <a class="reference external" href="https://github.com/calypso-science/Toto.git">https://github.com/calypso-science/Toto.git</a></p>
+</div></blockquote>
+<p>Clone the TOTO plugins repo if you access</p>
+</div>
+<div class="section" id="step-2-install-toto">
+<h3>Step 2: Install TOTO<a class="headerlink" href="#step-2-install-toto" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py install
+</pre></div>
+</div>
+<p>Look where is your installed path and copy it, It should look like: <code class="docutils literal notranslate"><span class="pre">C:\Users\username\AppData\Local\Programs\Python\Python38\lib\site-packages\toto-1.0.0-py3.8.egg\</span></code></p>
+</div>
+<div class="section" id="step-3-add-the-environmetal-variable">
+<h3>Step 3: Add the Environmetal variable<a class="headerlink" href="#step-3-add-the-environmetal-variable" title="Permalink to this headline">¶</a></h3>
+<p>You must set up an Environmental variable with the folder name from where TOTO has been installed.
+The variable MUST be called <code class="docutils literal notranslate"><span class="pre">TotoPath</span></code>.</p>
+<a class="reference internal image-reference" href="_images/windows_path.png"><img alt="_images/windows_path.png" class="align-center" src="_images/windows_path.png" style="height: 150px;" /></a>
+</div>
+<div class="section" id="step-4-add-the-plugins">
+<h3>Step 4: Add the plugins<a class="headerlink" href="#step-4-add-the-plugins" title="Permalink to this headline">¶</a></h3>
+<p>If you have access to the plugins go the folder and do:
+.. code:: bash</p>
+<blockquote>
+<div><p>python add_module.py</p>
+</div></blockquote>
+</div>
 </div>
 </div>
 
@@ -113,11 +139,12 @@ They can be found on the GitHub page:</p>
 <li class="toctree-l2"><a class="reference internal" href="#where-to-get-it">Where to get it</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-requirements">Module requirements:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-from-sources">Install from sources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#windows-installation">Windows installation:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-the-compiled-version">Using the compiled version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-compiled-version-on-windows">Using the compiled version on WINDOWS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="loading.html"> loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gui.html"> The GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html"> support</a></li>
 </ul>
 
 <div class="relations">

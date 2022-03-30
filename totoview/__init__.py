@@ -22,6 +22,8 @@ def _import_functions(pkgname="inputs",name='read'):
         if module == "__init__":
             continue
         func_name = "{}_{}".format(name,module)
+        # if pkgname=='extreme':
+        #     import pdb;pdb.set_trace()
         try:
             # globals()[func_name] = getattr(
             #     import_module("toto.{}.{}".format(pkgname, module)), func_name
