@@ -276,8 +276,8 @@ class TXTfile():
 
 
         options['colNamesLine'] = 1
-        options['skiprows']     = 2
-        options['unitNamesLine'] = 2
+        options['skiprows']     = 1
+        options['unitNamesLine'] = 0
         options['skipfooter'] = 0
 
         options['single_column']=True
