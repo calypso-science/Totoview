@@ -49,7 +49,9 @@ Then install totoview:
 
    python setup.py install
 
+Installation tutorial:
 
+`TOTOVIEW`_
 
 Using the compiled version on WINDOWS
 -------------------------------------
@@ -105,5 +107,4 @@ If you have access to the plugins go the folder and do:
 
 
 
-
-
+.. _`TOTOVIEW`: https://youtu.be/PB3O_AQ0Ots

@@ -53,3 +53,11 @@ A dataframe
     del df['lon']
     del df ['lat']
     totoview.show(dataframe=[df])
+
+Tutorial
+--------
+
+Exemple video: `TOTO`_
+
+
+.. _`TOTO`: https://youtu.be/SRcABTO31jc
